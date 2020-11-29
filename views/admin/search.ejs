@@ -1,0 +1,26 @@
+<%- include('../partials/header') -%>
+
+<div class="col-10">
+  <div class="container">
+    <h2>Add New Product</h2>
+
+    <form action="/new/product" class="text-center">
+      <div class="row">
+        <div class="col-10">
+          <div class="form-group">
+            <input type="text" class="form-control" name="search" id="exampleInputEmail1" aria-describedby="emailHelp" />
+          </div>
+          <button type="submit" class="btn btn-success btn-lg">Search Product</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="col">
+      <h4>Title:</h4>
+      <h4>Price:</h4>
+      <h4>SKU:</h4>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') -%>

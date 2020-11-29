@@ -1,0 +1,10 @@
+#sidebar {
+  width: 10vw !important ;
+  height: 100vh !important ;
+}
+
+#sidebar ul li a{
+	padding: 10px;
+	font-size: 1.1em;
+	display: block;
+}

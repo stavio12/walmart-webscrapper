@@ -1,0 +1,25 @@
+<%- include('partials/header') -%>
+<div class="col-10">
+  <form action="/" method="POST" class="text-center">
+    <%- include('partials/messages') -%>
+
+    <div class="col col-5 offset-3 pt-5 mt-5">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" />
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" name="password" id="exampleInputPassword1" />
+      </div>
+
+      <button type="submit" class="btn btn-success btn-lg">Submit</button>
+      <p class="small pt-3">
+        <a href="/reset">Have You forgotten your account details?</a>
+      </p>
+    </div>
+  </form>
+</div>
+
+<%- include('partials/footer') -%>

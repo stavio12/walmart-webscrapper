@@ -1,0 +1,23 @@
+<%- include('../partials/header')-%>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4 offset-sm-2 offset-md-3 offset-lg-4">
+        <form action="/reset" method="POST" class="mb-3 text-center">
+          <h1 class="text-center">Type Your email</h1>
+          <%- include('../partials/messages') -%>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="example@email.com" required />
+          </div>
+
+          <button type="submit" class="btn btn-danger btn-block">Send Email</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+<%- include('../partials/footer')-%>
