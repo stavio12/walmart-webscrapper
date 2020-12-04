@@ -1,5 +1,6 @@
 const express = require("express");
 const route = express.Router();
+const bodyParser = require("body-Parser");
 const passport = require("passport");
 const crypto = require("crypto");
 const async = require("async");
