@@ -69,7 +69,7 @@ async function scrapData(url, page) {
       url,
     };
   } catch (error) {
-    console.log(error);
+    req.flash("error_msg", "ERROR: " + err);
   }
 }
 
@@ -101,7 +101,7 @@ route.get("/new/product", verifyUser, async (req, res) => {
     let url = req.query.search;
 
     if (url) {
-      browser = await puppeteer.launch({ headless: false });
+      browser = await puppeteer.launch({ args: ["--no-sandbox"] });
       const page = await browser.newPage();
       let result = await scrapData(url, page);
 
@@ -293,7 +293,7 @@ route.post("/product/update", verifyUser, async (req, res) => {
           Product.updateOne({ url: products[i].url }, { $set: { oldprice: products[i].newprice, oldstock: products[i].newstock, updatestatus: "Not updated" } }).then((products) => {});
         }
 
-        browser = await puppeteer.launch({ headless: false });
+        browser = await puppeteer.launch({ args: ["--no-sandbox"] });
         const page = await browser.newPage();
 
         for (let i = 0; i < products.length; i++) {

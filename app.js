@@ -27,11 +27,15 @@ app.use(methodOverride("_method"));
 //Configure mongoose dbs
 const User = require("./walmartdbs/userdbs");
 
-mongoose.connect(process.env.DATABASE_LOCAL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+mongoose
+  .connect(process.env.DATABASE_LOCAL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then((con) => {
+    console.log("Mongod database connected successfully");
+  });
 
 //Configuring sessions
 app.use(

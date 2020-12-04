@@ -29,7 +29,7 @@ route.get("/users/all", verifyUser, (req, res) => {
     })
     .catch((err) => {
       req.flash("error_msg", "ERROR: " + err);
-      console.log(err);
+      res.redirect("/users/all");
     });
 });
 
@@ -43,7 +43,6 @@ route.get("/edit/:id", verifyUser, (req, res) => {
     .catch((err) => {
       req.flash("error_msg", "ERROR: " + err);
       res.redirect("/users/all");
-      console.log(err);
     });
 });
 
@@ -70,7 +69,6 @@ route.post("/signup", (req, res) => {
 
   User.register(userData, password, (err, user) => {
     if (err) {
-      console.log(err);
       req.flash("error_msg", "ERROR" + err);
       res.redirect("/");
     }
@@ -183,7 +181,6 @@ route.delete("/delete/:id", (req, res) => {
 route.put("/edit/:id", (req, res) => {
   let id = { _id: req.params.id };
 
-  console.log(req.body.username, req.body.email);
   User.updateOne(id, {
     $set: {
       name: req.body.username,
