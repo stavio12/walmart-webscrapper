@@ -1,90 +1,92 @@
 <%- include('../partials/header') -%>
 
-<div class="container">
+<div class="col-9">
   <h2>Dashboard</h2>
-  <%- include('../partials/messages') -%>
-
+  <%- include('../partials/messages') -%> <% let total = instock = outofstock = updated = notupdated = pricechanged = backinstock = 0 %> <% products.forEach(product =>{ %> <% total++ %> <% if(product.newstock === "In stock"){%> <% instock++ %> <% } %> <% if(product.newstock === "Out of stock"){%> <% outofstock++ %> <% } %> <% if(product.newprice !== product.oldprice){%> <% pricechanged++ %> <% } %> <% if(product.oldstock === "Out of stock" && product.newstock === "In stock"){%> <% backinstock++ %> <% } %> <% if(product.updatestatus === 'updated'){%> <% updated++ %> <% } %> <% if(product.updatestatus === 'Not updated'){%> <% notupdated++ %> <% } %> <% }) %>
   <div class="row">
     <div class="col-12">
-      <div class="card text-white bg-success mb-3 text-center" style="width: 50rem">
-        <div class="card-header">Header</div>
+      <div class="card text-white bg-success mb-3 text-center" style="width: 64rem">
+        <h2 class="card-header">
+          Total <br />
+          <%= total %>
+        </h2>
       </div>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row text-center pt-4">
     <div class="col-12 col-sm-5 col-md-5 col-lg-3">
       <div class="card text-white bg-secondary mb-3" style="max-width: 15rem">
-        <div class="card-header">
+        <h4 class="card-header">
           In Stock <br />
-          0
-        </div>
+          <%= instock %>
+        </h4>
         <div class="card-body">
-          <h5 class="card-title">View Details</h5>
+          <h4 class="card-title"><a class="text-white" href="/products/instock">View Details</a></h4>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-sm-5 col-md-5 col-lg-3">
       <div class="card text-white bg-success mb-3" style="max-width: 15rem">
-        <div class="card-header">
+        <h4 class="card-header">
           Out of Stock <br />
-          0
-        </div>
+          <%= outofstock %>
+        </h4>
         <div class="card-body">
-          <h5 class="card-title">View Details</h5>
+          <h4 class="card-title"><a class="text-white" href="/products/outofstock">View Details</a></h4>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-sm-5 col-md-5 col-lg-3">
       <div class="card text-white bg-danger mb-3" style="max-width: 15rem">
-        <div class="card-header">
+        <h4 class="card-header">
           Price Changed <br />
-          0
-        </div>
+          <%= pricechanged %>
+        </h4>
         <div class="card-body">
-          <h5 class="card-title">View Details</h5>
+          <h4 class="card-title"><a class="text-white" href="/products/pricechanged">View Details</a></h4>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-sm-5 col-md-5 col-lg-3">
-      <div class="card text-white bg-danger mb-3" style="max-width: 15rem">
-        <div class="card-header">
+      <div class="card text-white bg-warning mb-3" style="max-width: 15rem">
+        <h4 class="card-header">
           Back In Stock <br />
-          0
-        </div>
+          <%= backinstock %>
+        </h4>
         <div class="card-body">
-          <h5 class="card-title">View Details</h5>
+          <h4 class="card-title"><a class="text-white" href="/products/backinstock">View Details</a></h4>
         </div>
       </div>
     </div>
   </div>
 
-  <h3>Products Update Information</h3>
+  <h3 class="text-center pb-5 pt-2">Products Update Information</h3>
 
-  <div class="row">
+  <div class="row text-center">
     <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-      <div class="card text-white bg-secondary mb-3" style="max-width: 20rem">
-        <div class="card-header">
-          In Stock <br />
-          0
-        </div>
+      <div class="card text-white bg-secondary mb-3 offset-2" style="max-width: 20rem">
+        <h4 class="card-header">
+          Updated <br />
+          <%= updated %>
+        </h4>
         <div class="card-body">
-          <h5 class="card-title">View Details</h5>
+          <h4 class="card-title"><a class="text-white boder-0" href="/products/updated">View Details</a></h4>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-      <div class="card text-white bg-secondary mb-3" style="max-width: 20rem">
-        <div class="card-header">
-          In Stock <br />
-          0
-        </div>
+      <div class="card text-white bg-secondary mb-3 offset-2" style="max-width: 20rem">
+        <h4 class="card-header">
+          Not updated <br />
+          <%= notupdated%>
+        </h4>
         <div class="card-body">
-          <h5 class="card-title">View Details</h5>
+          <h4 class="card-title"><a class="text-white boder-0" href="/products/Notupdated">View Details</a></h4>
         </div>
       </div>
     </div>

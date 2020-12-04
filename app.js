@@ -6,6 +6,7 @@ const bodyParser = require("body-Parser");
 const session = require("express-session");
 const passport = require("passport");
 const methodOverride = require("method-override");
+
 const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 
@@ -65,9 +66,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //configuring ejs and routes to pages
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
 app.use(navigate);
 app.use(adminRoutes);
 app.use(userRoutes);
+
+app.get("*", (req, res) => {
+  res.render("admin/404page");
+});
 
 const port = process.env.PORT;
 app.listen(port, () => {

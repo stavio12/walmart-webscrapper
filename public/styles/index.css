@@ -3,8 +3,21 @@
   height: 100vh !important ;
 }
 
-#sidebar ul li a{
-	padding: 10px;
-	font-size: 1.1em;
-	display: block;
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+
+.card-title:hover {
+  cursor: pointer;
+}
+
+li a {
+	color: white;
+
+}
+
+li a:hover {
+  color: white;
 }

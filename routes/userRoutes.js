@@ -8,7 +8,6 @@ const nodemailer = require("nodemailer");
 //requring user model from dbs
 const User = require("../walmartdbs/userdbs");
 
-
 // check whether a user is authenticated
 function verifyUser(req, res, next) {
   if (req.isAuthenticated()) {
@@ -18,7 +17,6 @@ function verifyUser(req, res, next) {
   req.flash("error_msg", "Please Login first to access this page");
   res.redirect("/");
 }
-
 
 route.get("/signup", verifyUser, (req, res) => {
   res.render("admin/register");
@@ -49,9 +47,6 @@ route.get("/edit/:id", verifyUser, (req, res) => {
     });
 });
 
-
-
-
 route.get("/logout", verifyUser, (req, res) => {
   req.logOut();
   req.flash("success_msg", "Bye!,    See You Soon");
@@ -61,9 +56,6 @@ route.get("/logout", verifyUser, (req, res) => {
 route.get("/reset", (req, res) => {
   res.render("users/reset");
 });
-
-
-
 
 //All Post Routes
 
@@ -78,7 +70,7 @@ route.post("/signup", (req, res) => {
 
   User.register(userData, password, (err, user) => {
     if (err) {
-      console.log("err");
+      console.log(err);
       req.flash("error_msg", "ERROR" + err);
       res.redirect("/");
     }
@@ -208,5 +200,4 @@ route.put("/edit/:id", (req, res) => {
     });
 });
 
-
-module.exports = route
+module.exports = route;

@@ -1,0 +1,37 @@
+<%- include('../partials/header') -%>
+
+<div class="col-10">
+  <%- include('../partials/messages') -%>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">SKU</th>
+        <th scope="col">Name</th>
+        <th scope="col">Old price</th>
+        <th scope="col">New Price</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% product.forEach((prod)=>{ %> <% if(prod.newprice !== prod.oldprice){ %>
+      <tr class="bg-primary">
+        <th scope="row"><%= prod.sku %></th>
+        <th scope="row"><%= prod.title %></th>
+        <td><%= prod.oldprice %></td>
+        <td><%= prod.newprice %></td>
+
+        <td>
+          <a href="<%= prod.url%>" target="<%= prod.url%>" class="btn btn-primary">View</a>
+          <form action="/products/outofstock/delete/<%= prod.id  %>?_method=DELETE" style="display: inline" method="POST">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit" style="cursor: pointer" class="btn btn-danger">DELETE</button>
+          </form>
+        </td>
+      </tr>
+      <% }%> <% })%>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') -%>

@@ -19,9 +19,7 @@ function verifyUser(req, res, next) {
 }
 
 //ALl Get Routes
-route.get("/", (req, res) => {
-  res.render("index");
-});
+
 
 
 
