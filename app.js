@@ -36,6 +36,18 @@ mongoose
     console.log("Mongod database connected successfully");
   });
 
+//Unhighlet this only when using local dbs else if production use first one
+
+// mongoose
+// .connect(process.env.DATABASE_LOCAL, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+// })
+// .then((con) => {
+//   console.log("Mongod database connected successfully");
+// });
+
 //Configuring sessions
 app.use(
   session({
