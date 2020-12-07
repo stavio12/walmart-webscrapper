@@ -1,10 +1,9 @@
-const express = require("express");
+const express = require('express');
 const route = express.Router();
-const bodyParser = require("body-Parser");
-const passport = require("passport");
-const crypto = require("crypto");
-const async = require("async");
-const nodemailer = require("nodemailer");
+const passport = require('passport');
+const crypto = require('crypto');
+const async = require('async');
+const nodemailer = require('nodemailer');
 
 //requring user model from dbs
 const User = require("../walmartdbs/userdbs");

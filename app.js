@@ -1,14 +1,13 @@
 const express = require("express");
 const path = require("path");
+const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const bodyParser = require("body-Parser");
-const session = require("express-session");
-const passport = require("passport");
-const methodOverride = require("method-override");
-
-const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
+const session = require("express-session");
+const methodOverride = require("method-override");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 const app = express();
 dotenv.config({ path: "./config.env" });

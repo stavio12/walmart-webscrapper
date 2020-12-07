@@ -1,7 +1,8 @@
-const express = require("express");
+const express = require('express');
 const route = express.Router();
-const puppeteer = require("puppeteer");
-const cheerio = require("cheerio");
+const puppeteer = require('puppeteer');
+const cheerio = require('cheerio');
+
 
 let browser;
 
