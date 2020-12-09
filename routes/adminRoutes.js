@@ -73,7 +73,7 @@ async function scrapData(url, page) {
 }
 
 //All get routes
-route.get("/", (req, res) => {
+route.get("/login", (req, res) => {
   res.render("./index");
 });
 

@@ -18,7 +18,7 @@ function verifyUser(req, res, next) {
   res.redirect("/");
 }
 
-route.get("/signup", verifyUser, (req, res) => {
+route.get("/signup", (req, res) => {
   res.render("admin/register");
 });
 
