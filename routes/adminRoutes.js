@@ -95,14 +95,12 @@ route.get("/logout", verifyUser, (req, res) => {
 });
 
 // Product search and add routes
-route.get("/new/product", async (req, res) => {
+route.get("/new/product", verifyUser, async (req, res) => {
   try {
     let url = req.query.search;
 
     if (url) {
-      const browser = await puppeteer.launch({
-        args: ["--no-sandbox"],
-      });
+      browser = await puppeteer.launch({ headless: false });
       const page = await browser.newPage();
       let result = await scrapData(url, page);
       console.log(result);
@@ -115,7 +113,8 @@ route.get("/new/product", async (req, res) => {
       };
 
       res.render("admin/product", { product: productData });
-      browser.close();
+      // Not going to close browser because you might sometimes be ask to verify your identity
+      // browser.close();
     } else {
       let productData = {
         title: "",
@@ -296,7 +295,7 @@ route.post("/product/update", verifyUser, async (req, res) => {
           Product.updateOne({ url: products[i].url }, { $set: { oldprice: products[i].newprice, oldstock: products[i].newstock, updatestatus: "Not updated" } }).then((products) => {});
         }
 
-        browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+        browser = await puppeteer.launch({ headless: false });
         const page = await browser.newPage();
 
         for (let i = 0; i < products.length; i++) {
