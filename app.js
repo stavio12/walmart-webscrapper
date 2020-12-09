@@ -1,20 +1,20 @@
 const express = require("express");
 const path = require("path");
-const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const flash = require("connect-flash");
+const bodyParser = require("body-parser");
 const session = require("express-session");
-const methodOverride = require("method-override");
 const passport = require("passport");
+const methodOverride = require("method-override");
+
 const LocalStrategy = require("passport-local").Strategy;
+const flash = require("connect-flash");
 
 const app = express();
 dotenv.config({ path: "./config.env" });
 
 app.use(express.static("public"));
 
-const navigate = require("./routes/nav");
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 
@@ -35,18 +35,6 @@ mongoose
   .then((con) => {
     console.log("Mongod database connected successfully");
   });
-
-//Unhighlet this only when using local dbs else if production use first one
-
-// mongoose
-// .connect(process.env.DATABASE_LOCAL, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useCreateIndex: true,
-// })
-// .then((con) => {
-//   console.log("Mongod database connected successfully");
-// });
 
 //Configuring sessions
 app.use(
@@ -82,7 +70,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(navigate);
 app.use(adminRoutes);
 app.use(userRoutes);
 

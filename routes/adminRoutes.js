@@ -1,8 +1,7 @@
-const express = require('express');
+const express = require("express");
 const route = express.Router();
-const puppeteer = require('puppeteer');
-const cheerio = require('cheerio');
-
+const puppeteer = require("puppeteer");
+const cheerio = require("cheerio");
 
 let browser;
 
@@ -24,9 +23,8 @@ function verifyUser(req, res, next) {
 async function scrapData(url, page) {
   try {
     await page.goto(url, { waitUntil: "load", timeout: 0 });
-
     const html = await page.evaluate(() => document.body.innerHTML);
-    const $ = cheerio.load(html);
+    const $ = await cheerio.load(html);
 
     let title = $("h1").attr("content");
     let price = $(".price-characteristic").attr("content");
@@ -70,7 +68,7 @@ async function scrapData(url, page) {
       url,
     };
   } catch (error) {
-    req.flash("error_msg", "ERROR: " + err);
+    console.log(error);
   }
 }
 
@@ -97,14 +95,17 @@ route.get("/logout", verifyUser, (req, res) => {
 });
 
 // Product search and add routes
-route.get("/new/product", verifyUser, async (req, res) => {
+route.get("/new/product", async (req, res) => {
   try {
     let url = req.query.search;
 
     if (url) {
-      browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+      const browser = await puppeteer.launch({
+        args: ["--no-sandbox"],
+      });
       const page = await browser.newPage();
       let result = await scrapData(url, page);
+      console.log(result);
 
       let productData = {
         title: result.title,
@@ -126,7 +127,8 @@ route.get("/new/product", verifyUser, async (req, res) => {
       res.render("admin/product", { product: productData });
     }
   } catch (error) {
-    req.flash("error_msg", "ERROR: " + err);
+    req.flash("error_msg", "ERROR: " + error);
+    console.log(error);
     res.redirect("/new/product");
   }
 });
